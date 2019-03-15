@@ -1,19 +1,12 @@
-set wildignore+=**/node_modules/**
-set wildignore+=**/dist/**
-set wildignore+=*.js
-
-" let &l:errorformat='%-G,%EERROR: %f:%l:%c - %m,%WWARNING: %f:%l:%c - %m,%E%f(%l\,%c): error %m'
-" let &l:makeprg = 'tslint -c tslint.json'
-
-" let &l:errorformat = '%E%f(%l\,%c): error %m,%E%f(%l\,%c): %m,%Eerror %m'
-" let &l:makeprg = 'tsc --noEmit --watch false --pretty false --project tsconfig.json'
+" Ignore node_modules, distribution folder, and javascript files
+set wildignore=**/node_modules/**,**/dist/**,*.js
 
 let &l:errorformat = '%-G,%EERROR: %f:%l:%c - %m,%WWARNING: %f:%l:%c - %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): %m,%Eerror %m'
 let &l:makeprg = 'tsmake'
 
 setlocal keywordprg=/usr/local/google/home/leeren/devdocs.sh
 
-setlocal grepprg=LC_ALL=C\ grep\ -nrsH\ --exclude-dir={node_modules,.git,Session.vim} " External grep command to use
+setlocal grepprg=LC_ALL=C\ grep\ -nrsH\ --exclude-dir={node_modules,.git} " External grep command to use
 
 setlocal syntax=typescript
 
@@ -31,7 +24,6 @@ setlocal commentstring=//\ %s
 
 setlocal includeexpr=TypeScriptIncludeExpression(v:fname)
 
-tnoremap <leader>q console.log(JSON.stringify(, null, 4));<Left><Left><Left><Left><Left><Left><Left>
 nnoremap <leader>n :call NodeModulesIncsearchToggle()<CR>
 
 nnoremap [<C-d> :silent! call JumpToDefinition(expand("<cword>"))<CR>
@@ -237,15 +229,12 @@ endfunction
 
 nnoremap gp m`:silent keepjump  %!prettier --stdin --config node_modules/gts/prettier.config.js --stdin-filepath %<CR>``
 
-inoremap (; (<CR>);<C-c>O
-inoremap (, (<CR>),<C-c>O
-inoremap {; {<CR>};<C-c>O
-inoremap {, {<CR>},<C-c>O
-inoremap [; [<CR>];<C-c>O
-inoremap [, [<CR>],<C-c>O
 nmap ]] /^[ \t]*\(export[ \t]\+\)\?\(default[ \t]\+\)\?\(async[ \t]\+\)\?function/-;/{<CR>
 nmap [[ ?[{}]?+;?^[ \t]*\(export[ \t]\+\)\=\(default[ \t]\+\)\=\(async[ \t]\+\)\=function?-;/{<CR>
 nmap ][ /^}$<CR>
 nmap [] ?^}$<CR>
 autocmd QuickFixCmdPost [^l]* cwindow
 setlocal formatprg=./node_modules/.bin/prettier\ --stdin\ --stdin-filepath\ %\ --config\ node_modules/gts/prettier.config.js
+nnoremap <leader>w :se wildignore+=**/node_modules/**<CR>
+nnoremap <leader>W :se wildignore=<CR>
+
