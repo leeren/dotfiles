@@ -1,1 +1,1 @@
-vim-polyglot/indent/typescript.vim
+../../../submodules/vim-polyglot/syntax/typescript.vim

@@ -2,7 +2,7 @@
 
 " Basics {{{
 filetype plugin indent on         " Add filetype, plugin, and indent support
-syntax on 			  " Turn on syntax highlighting
+syntax on                         " Turn on syntax highlighting
 "}}}
 
 " Settings {{{
@@ -13,7 +13,7 @@ set expandtab                     " Prefer spaces over tabs
 set hidden                        " Prefer hiding over unloading buffers
 set wildcharm=<C-z>               " Macro-compatible command-line wildchar
 set path=.,**                     " Search relative to current file + directory
-set directory=/tmp//	          " No swapfiles in current directory
+set directory=/tmp//              " No swapfiles in current directory
 set tags=./tags;,tags;            " ID Tags relative to current file + directory
 " }}}
 
@@ -21,32 +21,41 @@ set tags=./tags;,tags;            " ID Tags relative to current file + directory
 " Self-explanatory convenience mappings
 imap jj <Esc>
 nnoremap ' `
-vnoremap ; :			  
+vnoremap ; :
 vnoremap : ;
 nnoremap ; :
 nnoremap : ;
 
-" More convenience mappings
-nnoremap gV `[v`] 		    " Visually select pasted or yanked text
-inoremap <C-d> <C-O>x		    " Copy Linux command-line character deletion
-nnoremap <leader>p :set paste!<CR>  " Toggle Paste mode
-nnoremap <BS> :buffer#<CR>	    " Fast switching to the alternate file
-nnoremap ,b :buffer *               " Faster buffer navigation
-nnoremap <leader>d "_d              " Black-hole deletes
-cnoremap <C-k> <Up> 	            " Command-line like forward-search 
-cnoremap <C-j> <Down>               " Command-line like reverse-search
-cnoreabbrev v vert                  " Often utilize vertical splits
-nnoremap ,g :g//#<Left><Left>	    " Fast global commands
-nnoremap ,e :e **/*<C-z><S-Tab>     " Faster project-based editing
+" Visually select pasted or yanked text
+nnoremap gV `[v`]
+" Copy Linux command-line character deletion
+inoremap <C-d> <C-O>x
+" Toggle Paste mode
+nnoremap <leader>p :set paste!<CR>
+" Fast switching to the alternate file
+nnoremap <BS> :buffer#<CR>
+" Faster buffer navigation
+nnoremap ,b :buffer *
+" Black hole deletes
+nnoremap <leader>d "_d
+" Command-line like forward-search
+cnoremap <C-k> <Up>
+" Command-line like reverse-search
+cnoremap <C-j> <Down>
+" Often utilize vertical splits
+cnoreabbrev v vert
+" Fast global commands
+nnoremap ,g :g//#<Left><Left>
+" Faster project-based editing
+nnoremap ,e :e **/*<C-z><S-Tab>
+" Join yanked text
+nnoremap ,j :let @"=substitute(@", '\n', '', 'g')<CR>
 
 " Bindings for more efficient path-based file navigation
 nnoremap ,f :find *
-nnoremap ,v :vert sfind *         
+nnoremap ,v :vert sfind *
 nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-
-" Join yanked text
-nnoremap ,j :let @"=substitute(@", '\n', '', 'g')<CR> 
 
 " More manageable brace expansions
 inoremap (; (<CR>);<C-c>O
@@ -65,7 +74,7 @@ nnoremap <leader>t :e ~/TODO<CR>
 " Window management
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 6/5)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 5/6)<CR>
- 
+
 " Access file name data
 cnoremap \fp <C-R>=expand("%:p:h")<CR>
 tnoremap \fp <C-R>=expand("%:p:h")<CR>
@@ -92,7 +101,7 @@ command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
 command! -nargs=+ -complete=file_in_path -bar Grep sil! grep! <args> | redraw!
 
 " Custom function aliases
-nnoremap <silent> ,G :Grep     				 " External grep
+nnoremap <silent> ,G :Grep
 cnoremap <expr> <CR> cmdline#AutoComplete()
 " }}}
 
@@ -121,8 +130,8 @@ augroup END
 " Neovim {{{
 if has("nvim")
   " Terminal mode:
-  tnoremap <Esc> <C-\><C-n>           " Switch to normal mode faster
-  autocmd TermOpen * startinsert      " Prefer immediate terminal focus
+  tnoremap <Esc> <C-\><C-n>
+  autocmd TermOpen * startinsert
 
   " Prefer h-j-k-l mode-agnostic means of switching windows
   tnoremap <M-h> <c-\><c-n><c-w>h
@@ -141,7 +150,7 @@ if has("nvim")
   nnoremap <M-j> <c-w>j
   nnoremap <M-k> <c-w>k
   nnoremap <M-l> <c-w>l
-  
+
   " nr2char({expr}) returns string with value {expr}
   " Equivalent to <C-\><C-n>"[reg]pi: paste the contents of [reg]
   tnoremap <expr> <C-v> '<C-\><C-N>"'.nr2char(getchar()).'pi'

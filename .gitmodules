@@ -1,6 +1,6 @@
-[submodule "typescript-ctags"]
-	path = typescript-ctags
+[submodule "submodules/typescript-ctags"]
+	path = submodules/typescript-ctags
 	url = https://github.com/jb55/typescript-ctags.git
-[submodule "vim-polyglot"]
-	path = vim-polyglot
+[submodule "submodules/vim-polyglot"]
+	path = submodules/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
