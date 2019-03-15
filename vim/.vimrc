@@ -1,8 +1,10 @@
 " VIMRC
+
 " Basics {{{
 filetype plugin indent on         " Add filetype, plugin, and indent support
 syntax on 			  " Turn on syntax highlighting
 "}}}
+
 " Settings {{{
 set shell=/usr/bin/zsh            " Prefer zsh for shell-related tasks
 set foldmethod=marker             " Group folds with '{{{,}}}'
@@ -14,6 +16,7 @@ set path=.,**                     " Search relative to current file + directory
 set directory=/tmp//	          " No swapfiles in current directory
 set tags=./tags;,tags;            " ID Tags relative to current file + directory
 " }}}
+
 " Mappings {{{
 " Self-explanatory convenience mappings
 imap jj <Esc>
@@ -29,8 +32,6 @@ inoremap <C-d> <C-O>x		    " Copy Linux command-line character deletion
 nnoremap <leader>p :set paste!<CR>  " Toggle Paste mode
 nnoremap <BS> :buffer#<CR>	    " Fast switching to the alternate file
 nnoremap ,b :buffer *               " Faster buffer navigation
-nnoremap ,j :let @"=substitute(     " Join yanked text
-    \ @", '\n', '', 'g')<CR> 
 nnoremap <leader>d "_d              " Black-hole deletes
 cnoremap <C-k> <Up> 	            " Command-line like forward-search 
 cnoremap <C-j> <Down>               " Command-line like reverse-search
@@ -43,6 +44,9 @@ nnoremap ,f :find *
 nnoremap ,v :vert sfind *         
 nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+
+" Join yanked text
+nnoremap ,j :let @"=substitute(@", '\n', '', 'g')<CR> 
 
 " More manageable brace expansions
 inoremap (; (<CR>);<C-c>O
@@ -71,7 +75,7 @@ tnoremap \fn <C-R>=expand("%:t:r")<CR>
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 " Symbol-based navigation
-nnoremap ,j :tjump /
+nnoremap ,t :tjump /
 nnoremap ,d :dlist /
 nnoremap ,i :ilist /
 
@@ -89,18 +93,21 @@ command! -nargs=+ -complete=file_in_path -bar Grep sil! grep! <args> | redraw!
 
 " Custom function aliases
 nnoremap <silent> ,G :Grep     				 " External grep
-cnoremap <expr> <CR> :call command-line#AutoComplete()   " Command autocomplete
+cnoremap <expr> <CR> cmdline#AutoComplete()
 " }}}
+
 " {{{ Autocommands
 " Automatically source .vimrc on save
 augroup Vimrc
   autocmd! bufwritepost .vimrc source %
 augroup END
+
 " Automatically call OSC52 function on yank to sync register with host clipboard
 augroup Yank
   autocmd!
   autocmd TextYankPost * if v:event.operator ==# 'y' | call yank#Osc52Yank() | endif
 augroup END
+
 " Create file-marks for commonly edited file types
 augroup FileMarks
   autocmd!
@@ -110,6 +117,7 @@ augroup FileMarks
   autocmd BufLeave *.vim  normal! mV
 augroup END
 " }}}
+
 " Neovim {{{
 if has("nvim")
   " Terminal mode:

@@ -1,5 +1,5 @@
 " Command-line completion (author: romainl)
-function! AutoComplete()
+function! cmdline#AutoComplete()
     let cmdline = getcmdline()
     if cmdline =~ '\v\C^(ls)'
         " like :ls but prompts for a buffer command
