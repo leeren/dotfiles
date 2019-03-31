@@ -227,7 +227,7 @@ function! Lint() abort
     silent make!
 endfunction
 
-nnoremap gp m`:silent keepjump  %!prettier --stdin --config node_modules/gts/prettier.config.js --stdin-filepath %<CR>``
+nnoremap gp m`:silent keepjump  %!prettier --stdin --trailing-comma all --single-quote --stdin-filepath %<CR>``
 
 nmap ]] /^[ \t]*\(export[ \t]\+\)\?\(default[ \t]\+\)\?\(async[ \t]\+\)\?function/-;/{<CR>
 nmap [[ ?[{}]?+;?^[ \t]*\(export[ \t]\+\)\=\(default[ \t]\+\)\=\(async[ \t]\+\)\=function?-;/{<CR>

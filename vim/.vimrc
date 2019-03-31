@@ -15,6 +15,7 @@ set wildcharm=<C-z>               " Macro-compatible command-line wildchar
 set path=.,**                     " Search relative to current file + directory
 set directory=/tmp//              " No swapfiles in current directory
 set tags=./tags;,tags;            " ID Tags relative to current file + directory
+set shiftwidth=2                  " Digestable defaults for config files
 " }}}
 
 " Mappings {{{
@@ -155,4 +156,9 @@ if has("nvim")
   " Equivalent to <C-\><C-n>"[reg]pi: paste the contents of [reg]
   tnoremap <expr> <C-v> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 endif
+" }}}
+
+" Snippets {{{
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
 " }}}

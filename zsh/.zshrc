@@ -1,20 +1,27 @@
-# ZSH-specific
-#
-alias vi='nvim'
+PATH=$PATH:~/go/bin
+# Configure oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # General aliases
+alias vi='nvim'
 alias a='awk "{print \$1}"'
 alias z='awk "{print \$NF}"'
 
 function n () {
   sed -n $1p
 }
+
+function urldecode() {
+  python3 -c 'from urllib.parse import unquote_plus as up; print(up("'"$1"'"))'
+}
 function urlencode() {
   python3 -c 'from urllib.parse import urlencode; print(urlencode('"$1"'))'
+}
+function urlencode() {
+  python3 -c 'from urllib.parse import quote_plus as qp; print(qp("'"$1"'"))'
 }
 export CDPATH=.:~:~/workspace
 # Ctrl-w is bound in stty to werase, so unbind it and rebind
@@ -41,10 +48,9 @@ function gfc () {
   fi
 }
 
-# KUBERNETES
+# KUBERNETES ALIASES
 alias k='kubectl'
 alias kc='kubectl config'
-alias kcl='kubectl cluster-info'
 alias kcc='kubectl config current-context'
 function ksc () {
   if [[ $1 =~ [0-9] ]]
@@ -115,7 +121,7 @@ function kgspoy () {
   fi
 }
 function kgpoc () {
-  kg pods $1 -n ${2:-default}  -o jsonpath={.spec.containers[*].name} | xargs -n1 | ( [[ "$3" ]] & n $3 || cat )
+  kg pods $1 -n ${2:-default}  -o jsonpath="{.spec.containers[*].name}" | xargs -n1 | ( [[ "$3" ]] & n $3 || cat )
 }
 function kgsc () {
   NUM=${3:-1}
@@ -167,3 +173,7 @@ if [ -f '/usr/local/google/home/leeren/google-cloud-sdk/path.zsh.inc' ]; then . 
 # The next line enables shell command completion for gcloud.
 if [ -f '/usr/local/google/home/leeren/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google/home/leeren/google-cloud-sdk/completion.zsh.inc'; fi
 source /etc/bash_completion.d/g4d
+
+alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)"'
+
+[ -f "$HOME/.zshrc.corp" ] && source $HOME/.zshrc.corp

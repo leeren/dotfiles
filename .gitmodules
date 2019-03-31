@@ -4,3 +4,6 @@
 [submodule "submodules/vim-polyglot"]
 	path = submodules/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "submodules/ultisnips"]
+	path = submodules/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
