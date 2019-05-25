@@ -13,7 +13,7 @@ set expandtab                     " Prefer spaces over tabs
 set hidden                        " Prefer hiding over unloading buffers
 set wildcharm=<C-z>               " Macro-compatible command-line wildchar
 set path=.,**                     " Search relative to current file + directory
-set directory=/tmp//              " No swapfiles in current directory
+set noswapfile                    " No swapfiles period.
 set tags=./tags;,tags;            " ID Tags relative to current file + directory
 set shiftwidth=2                  " Digestable defaults for config files
 " }}}
@@ -51,6 +51,10 @@ nnoremap ,g :g//#<Left><Left>
 nnoremap ,e :e **/*<C-z><S-Tab>
 " Join yanked text
 nnoremap ,j :let @"=substitute(@", '\n', '', 'g')<CR>
+" Capture ex-command output to default register
+nnoremap ,p :let @"=substitute(execute('pwd'), '\n', '', 'g')<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+" Reload snippet configuration files
+nnoremap <C-s> :call UltiSnips#RefreshSnippets()<CR>
 
 " Bindings for more efficient path-based file navigation
 nnoremap ,f :find *
@@ -71,6 +75,7 @@ nnoremap <leader>v :e ~/.vimrc<CR>
 nnoremap <leader>f :e <C-R>='~/.vim/ftplugin/'.&filetype.'.vim'<CR><CR>
 nnoremap <leader>z :e ~/.zshrc<CR>
 nnoremap <leader>t :e ~/TODO<CR>
+nnoremap <leader>e :UltiSnipsEdit<CR>
 
 " Window management
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 6/5)<CR>
@@ -90,10 +95,10 @@ nnoremap ,d :dlist /
 nnoremap ,i :ilist /
 
 " Kill bad habits
-noremap h <NOP>
-noremap j <NOP>
-noremap k <NOP>
-noremap l <NOP>
+" noremap h <NOP>
+" noremap j <NOP>
+" noremap k <NOP>
+" noremap l <NOP>
 
 " Scratch Buffer
 command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
@@ -159,6 +164,7 @@ endif
 " }}}
 
 " Snippets {{{
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsExpandTrigger="<tab>"
 " }}}

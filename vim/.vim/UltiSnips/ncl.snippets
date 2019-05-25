@@ -1,0 +1,136 @@
+snippet h
+////////////////////////////////////////////////////////////////////////////////
+// $1
+////////////////////////////////////////////////////////////////////////////////
+endsnippet
+
+snippet custom
+::Rapid::Workflow::CustomWorkflow(
+  name = $1,
+  config_path = $2,
+  parameters = [
+    $3
+  ],
+);
+endsnippet
+
+snippet param
+::Rapid::WorkflowParameter::Simple(
+  name = "$1",
+  default_value = $2,
+  modifiable = ${3:false},
+),
+endsnippet
+
+snippet rollout
+"google3/releasetools/rapid/workflows/contrib/inception-rollout.pp"
+endsnippet
+
+snippet grant
+::Rapid::GrantSettings(
+  grant = [
+    ::Rapid::Grant::Group("$1", ::Rapid::Role::Owner),
+    ::Rapid::Grant::User("$2", ::Rapid::Role::ProcessRunner),
+  ],
+  source = ::rapid_config::GrantSettings::Source::BLUEPRINT_ONLY,
+),
+endsnippet
+
+snippet runner
+::Rapid::RunnerConfig(
+  runner_user = "$1",
+  charged_user = "$1",
+),
+endsnippet
+
+snippet create
+::Rapid::Workflow::CreateCandidate(
+  name = "Create Candidate",
+  config_path = "google3/releasetools/rapid/workflows/create_candidate.pp",
+),
+endsnippet
+
+snippet sub
+::Rapid::Subscription(
+  keyword_filter = "${1:e:category=FAILURE}",
+  email_addresses = ["${2:cloud-media-access-prod@google.com}"],
+  notify_process_launcher = true,
+),
+endsnippet
+
+snippet bool
+::Rapid::WorkflowParameter::Bool(
+  name = "$1",
+  default_value = ${2:false},
+  modifiable = ${3:true},
+),
+endsnippet
+
+snippet automatecomplete
+::rapid_config::AutomationRule(
+  name = "$1",
+  schedule = ::rapid_config::ClockEvent(
+    timespec = "${2:*} ${3:*} ${4:*} ${5:*} ${6:*}",
+    timezone = ::rapid_config::ClockEvent::Timezone::MTV,
+    skip_holiday = [
+      ::rapid_config::ClockEvent::Country::USA,
+    ],
+  ),
+  suspendable = true,
+  complete_releases = ::rapid_config::CompleteReleases(
+    release_age_hours = $7,
+  ),
+);
+endsnippet
+
+snippet automatecreate
+::rapid_config::AutomationRule(
+  name = "$1",
+  schedule = ::rapid_config::ClockEvent(
+    timespec = "${2:*} ${3:*} ${4:*} ${5:*} ${6:*}",
+    timezone = ::rapid_config::ClockEvent::Timezone::MTV,
+    skip_holiday = [
+      ::rapid_config::ClockEvent::Country::USA,
+    ],
+  ),
+  suspendable = true,
+  create_release_and_candidate = ::rapid_config::CreateReleaseAndCandidate(
+    create_candidate_workflow = ::rapid_config::WorkflowSpec(
+        name = "$7",
+    ),
+    tag = ["$8"],
+    golden_source = ::rapid_config::AutomationRule::GoldenSourceType::TAP,
+    chained_workflow = [
+      ::rapid_config::WorkflowSpec(name = "$9"),
+    ],
+  ),
+);
+endsnippet
+
+snippet automate
+::rapid_config::AutomationRule(
+  name = "$1",
+  schedule = ::rapid_config::ClockEvent(
+    timespec = "${2:*} ${3:*} ${4:*} ${5:*} ${6:*}",
+    timezone = ::rapid_config::ClockEvent::Timezone::MTV,
+    skip_holiday = [
+      ::rapid_config::ClockEvent::Country::USA,
+    ],
+  ),
+  suspendable = true,
+  launch_workflow = ::rapid_config::LaunchWorkflow(
+    by_tag = ::rapid_config::LaunchWorkflow::ByTag(tag = "$7"),
+    workflow = [
+      ::rapid_config::WorkflowSpec(
+        name = "$8",
+      ),
+    ],
+  ),
+);
+endsnippet
+
+snippet spec
+::rapid_config::WorkflowSpec(
+  name = "$1",
+),
+endsnippet

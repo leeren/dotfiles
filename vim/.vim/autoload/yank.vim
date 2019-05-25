@@ -4,5 +4,5 @@ function! yank#Osc52Yank()
     let buffer=substitute(buffer, "\n$", "", "")
     let buffer='\e]52;c;'.buffer.'\x07'
     silent exe "!echo -ne ".shellescape(buffer).
-        \ " > ".shellescape("/dev/pts/4")
+        \ " > ".shellescape(g:tty)
 endfunction

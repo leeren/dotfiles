@@ -6,7 +6,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # General aliases
-alias vi='nvim'
+alias vi='nvim -c "let g:tty='\''$(tty)'\''"'
 alias a='awk "{print \$1}"'
 alias z='awk "{print \$NF}"'
 
@@ -177,3 +177,14 @@ source /etc/bash_completion.d/g4d
 alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)"'
 
 [ -f "$HOME/.zshrc.corp" ] && source $HOME/.zshrc.corp
+
+function repl () {
+  node -i -e "$(< $1.js)"
+}
+
+function def () {
+  declare -f $1
+}
+function get_alias() {
+  printf '%s\n' $aliases[$1]
+}
