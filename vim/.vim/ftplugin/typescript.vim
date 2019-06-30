@@ -1,5 +1,5 @@
 " Ignore node_modules, distribution folder, and javascript files
-set wildignore=**/node_modules/**,**/dist/**,*.js
+set wildignore=**/node_modules/**,**/dist/**
 
 let &l:errorformat = '%-G,%EERROR: %f:%l:%c - %m,%WWARNING: %f:%l:%c - %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): %m,%Eerror %m'
 let &l:makeprg = 'tsmake'

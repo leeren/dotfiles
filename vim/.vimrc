@@ -27,6 +27,7 @@ vnoremap : ;
 nnoremap ; :
 nnoremap : ;
 
+nnoremap <leader>F :FormatCode<CR>
 " Visually select pasted or yanked text
 nnoremap gV `[v`]
 " Copy Linux command-line character deletion
@@ -49,8 +50,8 @@ cnoreabbrev v vert
 nnoremap ,g :g//#<Left><Left>
 " Faster project-based editing
 nnoremap ,e :e **/*<C-z><S-Tab>
-" Join yanked text
-nnoremap ,j :let @"=substitute(@", '\n', '', 'g')<CR>
+" Join yanked text on a yank (needed for terminal mode copies)
+vnoremap yy y<CR>:let @"=substitute(@", '\n', '', 'g')<CR>:call yank#Osc52Yank()<CR>
 " Capture ex-command output to default register
 nnoremap ,p :let @"=substitute(execute('pwd'), '\n', '', 'g')<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 " Reload snippet configuration files
@@ -74,6 +75,7 @@ inoremap [, [<CR>],<C-c>O
 nnoremap <leader>v :e ~/.vimrc<CR>
 nnoremap <leader>f :e <C-R>='~/.vim/ftplugin/'.&filetype.'.vim'<CR><CR>
 nnoremap <leader>z :e ~/.zshrc<CR>
+nnoremap <leader>C :e ~/.examples<CR>
 nnoremap <leader>t :e ~/TODO<CR>
 nnoremap <leader>e :UltiSnipsEdit<CR>
 

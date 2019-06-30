@@ -1,0 +1,1 @@
+../../../submodules/vim-solidity/ftdetect/solidity.vim

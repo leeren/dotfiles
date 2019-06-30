@@ -7,3 +7,6 @@
 [submodule "submodules/ultisnips"]
 	path = submodules/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+[submodule "submodules/vim-solidity"]
+	path = submodules/vim-solidity
+	url = https://github.com/tomlion/vim-solidity.git

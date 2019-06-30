@@ -6,3 +6,8 @@ setlocal isfname+=@-@
 
 setlocal include=^\\s*[^\/]\\+\\(from\\\|require(['\"]\\)
 
+nnoremap <space><space> <C-w>ba<C-c><C-c><C-\><C-n>:sleep 100m<CR>aNODE_ENV=dev NODE_PATH=. node inspect ./src/index.js<CR><C-\><C-n>:sleep 500m<CR>ac<CR><C-\><C-n><C-w>p
+
+nnoremap D odebugger;<Esc>
+set wildignore=**/node_modules/**,**/dist/**
+
