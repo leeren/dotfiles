@@ -1,5 +1,5 @@
 PATH=$PATH:~/go/bin
-PATH=$PATH:/usr/local/google/home/leeren/boost_1_66_0
+PATH=$PATH:$HOME/boost_1_66_0
 path=$PATH:~/wrk
 PATH=$PATH:~/
 PATH=$PATH:$HOME/.local/lib/python2.7/site-packages
@@ -154,11 +154,7 @@ function kat() {
   local shell="bash"
   kubectl exec -it $(kgspo $1 ${2:-1} -o=custom-columns=":metadata.name" --no-headers) -n $(kgspo $1 -o=custom-columns=":metadata.namespace" --no-headers | n 1) -c $container $shell
 }
-# GCE Enforcer blocks SSH access to GCE instances from networks other than Google Corp and Google Prod (cloudtop is not in either)
-function gat() {
-  local node=$(kgspo $1 ${2:-1} -o=custom-columns=":.spec.nodeName" --no-headers)
-  gcloud compute ssh $node --zone $(getzone $node) -- -o ProxyCommand='corp-ssh-helper %h %p'
-}
+
 function kpf() {
   kubectl port-forward $(kgspo $1 ${4:-1}) $2:$3 &
 }
@@ -198,9 +194,9 @@ alias -g an="--all-namespaces"
 alias -g nh="--no-headers"
 alias -g oj="-o json | jq '.'"
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/google/home/leeren/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google/home/leeren/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 # The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/google/home/leeren/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google/home/leeren/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 source /etc/bash_completion.d/g4d
 
 alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)"'
@@ -221,9 +217,6 @@ function get_alias() {
 # Get RFC3339 UTC "Zulu" format to paste into stackdriver logs
 function st() { echo "timestamp >= \"$(date +%Y-%m-%dT%TZ -u --date="$1")\"" }
 
-function tags() { gcloud container images list-tags gcr.io/anvato-access-dev/$1 }
-
-alias nginx='~/workspace/cluster-deploy/utils/nginx-tunnel.sh'
 function evict {
   kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains("Evicted")) | "kubectl delete pods \(.metadata.name) -n \(.metadata.namespace)"' | xargs -n 1 bash -c
 }
