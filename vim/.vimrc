@@ -56,6 +56,8 @@ vnoremap yy y<CR>:let @"=substitute(@", '\n', '', 'g')<CR>:call yank#Osc52Yank()
 nnoremap ,p :let @"=substitute(execute('pwd'), '\n', '', 'g')<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 " Reload snippet configuration files
 nnoremap <C-s> :call UltiSnips#RefreshSnippets()<CR>
+" Run terminal command across all windows
+nnoremap ww :windo call jobsend(b:terminal_job_id, "\n")<Left><Left><Left><Left>
 
 " Bindings for more efficient path-based file navigation
 nnoremap ,f :find *
@@ -170,3 +172,4 @@ let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsExpandTrigger="<tab>"
 " }}}
+
