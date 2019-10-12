@@ -181,10 +181,6 @@ function getRoles () {
 function perm () {
         curl -s https://cloud.google.com/kubernetes-engine/docs/reference/api-permissions | grep $1 | grep -oP '(?<=<code>).*?(?=</code>)'
 }
-alias -g gkeapi="-v=6 2>&1 | grep --color=none -oP '[A-Za-z]+ http[^\s]*' | sed -e 's/^\(.* \).*\(\/apis.*\)/\1\2/' "
-alias -g an="--all-namespaces"
-alias -g nh="--no-headers"
-alias -g oj="-o json | jq '.'"
 
 function repl () {
   node -i -e "$(< $1.js)"
