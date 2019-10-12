@@ -185,15 +185,6 @@ alias -g gkeapi="-v=6 2>&1 | grep --color=none -oP '[A-Za-z]+ http[^\s]*' | sed 
 alias -g an="--all-namespaces"
 alias -g nh="--no-headers"
 alias -g oj="-o json | jq '.'"
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-source /etc/bash_completion.d/g4d
-
-alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)"'
-
-[ -f "$HOME/.zshrc.corp" ] && source $HOME/.zshrc.corp
 
 function repl () {
   node -i -e "$(< $1.js)"
@@ -205,9 +196,6 @@ function def () {
 function get_alias() {
   printf '%s\n' $aliases[$1]
 }
-
-# Get RFC3339 UTC "Zulu" format to paste into stackdriver logs
-function st() { echo "timestamp >= \"$(date +%Y-%m-%dT%TZ -u --date="$1")\"" }
 
 function evict {
   kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains("Evicted")) | "kubectl delete pods \(.metadata.name) -n \(.metadata.namespace)"' | xargs -n 1 bash -c
