@@ -10,3 +10,6 @@
 [submodule "submodules/vim-solidity"]
 	path = submodules/vim-solidity
 	url = https://github.com/tomlion/vim-solidity.git
+[submodule "submodules/vim-surround"]
+	path = submodules/vim-surround
+	url = https://github.com/tpope/vim-surround
