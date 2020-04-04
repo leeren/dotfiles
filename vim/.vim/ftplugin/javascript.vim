@@ -11,3 +11,4 @@ nnoremap <space><space> <C-w>ba<C-c><C-c><C-\><C-n>:sleep 100m<CR>aNODE_ENV=dev 
 nnoremap D odebugger;<Esc>
 set wildignore=**/node_modules/**,**/dist/**
 
+nnoremap gp m`:silent keepjump  %!prettier --stdin --trailing-comma all --single-quote --stdin-filepath %<CR>``
