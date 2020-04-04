@@ -7,9 +7,9 @@
 [submodule "submodules/ultisnips"]
 	path = submodules/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
-[submodule "submodules/vim-solidity"]
-	path = submodules/vim-solidity
-	url = https://github.com/tomlion/vim-solidity.git
 [submodule "submodules/vim-surround"]
 	path = submodules/vim-surround
 	url = https://github.com/tpope/vim-surround
+[submodule "submodules/vim-commentary"]
+	path = submodules/vim-commentary
+	url = https://github.com/tpope/vim-commentary
