@@ -1,1 +1,0 @@
-../../../submodules/vim-solidity/syntax/solidity.vim

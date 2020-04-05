@@ -13,3 +13,6 @@
 [submodule "submodules/vim-commentary"]
 	path = submodules/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+[submodule "submodules/vim-repeat"]
+	path = submodules/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
