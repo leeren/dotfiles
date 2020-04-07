@@ -42,8 +42,12 @@ endsnippet
 #############
 # HTML TAGS #
 #############
+# snippet a "Link" w
+# <a href="${1:http://www.${2:url.com}}"${3: target="_blank"}>${4:Anchor Text}</a>
+# endsnippet
+
 snippet a "Link" w
-<a href="${1:http://www.${2:url.com}}"${3: target="_blank"}>${4:Anchor Text}</a>
+<a href="${1:http://www.${2:url.com}}">${4:Anchor Text}</a>
 endsnippet
 
 snippet abbr "<abbr>" w
@@ -152,6 +156,12 @@ snippet div. "<div> with class" w
 </div>
 endsnippet
 
+snippet divi "<div> with id" w
+<div`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
+	${0:${VISUAL}}
+</div>
+endsnippet
+
 snippet dl "<dl>"
 <dl>
 	${1:Definition list}
@@ -160,6 +170,10 @@ endsnippet
 
 snippet dt "<dt>"
 <dt>$1</dt>
+endsnippet
+
+snippet dtc "<dt class>"
+<dt class=$1>$2</dt>
 endsnippet
 
 snippet em "<em>" w
@@ -198,27 +212,51 @@ snip.rv = (snip.basename or 'unnamed') + '_submit'
 </form>
 endsnippet
 
+snippet h1i "HTML <h1 id>" w
+<h1 id="$1">${0:${VISUAL}}</h1>
+endsnippet
+
 snippet h1 "HTML <h1>" w
 <h1>${0:${VISUAL}}</h1>
+endsnippet
+
+snippet h2i "HTML <h2 id>" w
+<h2 id="$1">${0:${VISUAL}}</h2>
 endsnippet
 
 snippet h2 "HTML <h2>" w
 <h2>${0:${VISUAL}}</h2>
 endsnippet
 
-snippet h3 "HTML <h3>" w
+snippet h3 "HTML <h3 id>" w
+<h3 id="$1">${0:${VISUAL}}</h3>
+endsnippet
+
+snippet h3i "HTML <h3>" w
 <h3>${0:${VISUAL}}</h3>
 endsnippet
 
-snippet h4 "HTML <h4>" w
+snippet h4 "HTML <h4 id>" w
+<h4 id="$1">${0:${VISUAL}}</h4>
+endsnippet
+
+snippet h4i "HTML <h4>" w
 <h4>${0:${VISUAL}}</h4>
 endsnippet
 
-snippet h5 "HTML <h5>" w
+snippet h5 "HTML <h5 id>" w
+<h5 id="$1">${0:${VISUAL}}</h5>
+endsnippet
+
+snippet h5i "HTML <h5>" w
 <h5>${0:${VISUAL}}</h5>
 endsnippet
 
-snippet h6 "HTML <h6>" w
+snippet h6 "HTML <h6 id>" w
+<h6 id="$1">${0:${VISUAL}}</h6>
+endsnippet
+
+snippet h6i "HTML <h6>" w
 <h6>${0:${VISUAL}}</h6>
 endsnippet
 
@@ -423,6 +461,10 @@ snippet small "<small>" w
 <small>$1</small>
 endsnippet
 
+snippet spanc "<span class>" w
+<span class="$0">${1:${VISUAL}}</span>
+endsnippet
+
 snippet span "<span>" w
 <span>${0:${VISUAL}}</span>
 endsnippet
@@ -465,6 +507,12 @@ endsnippet
 
 snippet td "table cell" w
 <td>${0:${VISUAL}}</td>
+endsnippet
+
+snippet sectioni "<template>"
+<section id="$1">
+$2
+</section>
 endsnippet
 
 snippet template "<template>"

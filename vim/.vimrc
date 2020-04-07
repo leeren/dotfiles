@@ -21,6 +21,7 @@ set shiftwidth=2                  " Digestable defaults for config files
 " Mappings {{{
 " Self-explanatory convenience mappings
 imap jj <Esc>
+vmap jj <Esc>
 nnoremap ' `
 vnoremap ; :
 vnoremap : ;
@@ -56,8 +57,6 @@ vnoremap yy y<CR>:let @"=substitute(@", '\n', '', 'g')<CR>:call yank#Osc52Yank()
 nnoremap ,p :let @"=substitute(execute('pwd'), '\n', '', 'g')<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 " Reload snippet configuration files
 nnoremap <C-s> :call UltiSnips#RefreshSnippets()<CR>
-" Run terminal command across all windows
-nnoremap ww :windo call jobsend(b:terminal_job_id, "\n")<Left><Left><Left><Left>
 " Make the directory for which the current file should be in
 nnoremap ,m :!mkdir -p %:h<CR>
 
@@ -170,7 +169,6 @@ endif
 " }}}
 
 " Snippets {{{
-let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
