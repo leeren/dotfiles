@@ -5,34 +5,40 @@ filetype plugin indent on         " Add filetype, plugin, and indent support
 syntax on                         " Turn on syntax highlighting
 "}}}
 
+" Variable Assignments {{{
+let $MYVIMRC="~/.vimrc"
+" }}}
+
 " Settings {{{
 set shell=/usr/bin/zsh            " Prefer zsh for shell-related tasks
-set foldmethod=marker             " Group folds with '{{{,}}}'
 set grepprg=LC_ALL=C\ grep\ -rns  " Faster ASCII-based grep
 set expandtab                     " Prefer spaces over tabs
 set hidden                        " Prefer hiding over unloading buffers
 set wildcharm=<C-z>               " Macro-compatible command-line wildchar
-set path=.,**                     " Search relative to current file + directory
+set path=.,,**                    " Search relative to current file + directory
 set noswapfile                    " No swapfiles period.
 set tags=./tags;,tags;            " ID Tags relative to current file + directory
-set shiftwidth=2                  " Digestable defaults for config files
+set shiftwidth=2                  " Indentation defaults (<< / >> / == / auto)
+set shiftround                    " Snap indents via > or < to multiples of sw
 " }}}
 
 " Mappings {{{
 " Self-explanatory convenience mappings
-imap jj <Esc>
-vmap jj <Esc>
+noremap jj <Esc>
+noremap <C-k> <C-p>
+noremap <C-p> <Up>$
+inoremap <C-j> <CR><C-o>O<C-t>
+inoremap <C-Return> <Esc>
 nnoremap ' `
 vnoremap ; :
 vnoremap : ;
 nnoremap ; :
 nnoremap : ;
 
-nnoremap <leader>F :FormatCode<CR>
+" Re-detect filetype
+nnoremap <leader>t :filetype detect<CR>
 " Visually select pasted or yanked text
 nnoremap gV `[v`]
-" Copy Linux command-line character deletion
-inoremap <C-d> <C-O>x
 " Toggle Paste mode
 nnoremap <leader>p :set paste!<CR>
 " Fast switching to the alternate file
@@ -75,12 +81,10 @@ inoremap [; [<CR>];<C-c>O
 inoremap [, [<CR>],<C-c>O
 
 " Useful for accessing commonly-used files
-nnoremap <leader>v :e ~/.vimrc<CR>
+nnoremap <leader>v :e $MYVIMRC<CR>
 nnoremap <leader>f :e <C-R>='~/.vim/ftplugin/'.&filetype.'.vim'<CR><CR>
 nnoremap <leader>z :e ~/.zshrc<CR>
-nnoremap <leader>C :e ~/.examples<CR>
-nnoremap <leader>t :e ~/TODO<CR>
-nnoremap <leader>e :UltiSnipsEdit<CR>
+nnoremap <leader>s :UltiSnipsEdit<CR>
 
 " Window management
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 6/5)<CR>
@@ -100,10 +104,11 @@ nnoremap ,d :dlist /
 nnoremap ,i :ilist /
 
 " Kill bad habits
-" noremap h <NOP>
-" noremap j <NOP>
-" noremap k <NOP>
-" noremap l <NOP>
+noremap h <nop>
+noremap j <nop>
+noremap k <nop>
+noremap l <nop>
+inoremap <esc> <nop>
 
 " Scratch Buffer
 command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
@@ -119,6 +124,7 @@ cnoremap <expr> <CR> cmdline#AutoComplete()
 " {{{ Autocommands
 " Automatically source .vimrc on save
 augroup Vimrc
+  autocmd!
   autocmd! bufwritepost .vimrc source %
 augroup END
 
@@ -132,6 +138,7 @@ augroup END
 augroup FileMarks
   autocmd!
   autocmd BufLeave *.html normal! mH
+  autocmd BufLeave *.snippets normal! mS
   autocmd BufLeave *.js   normal! mJ
   autocmd BufLeave *.ts   normal! mT
   autocmd BufLeave *.vim  normal! mV
@@ -173,5 +180,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:surround_13 = "\n\t\r\n"
 " }}}
 

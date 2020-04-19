@@ -227,14 +227,14 @@ function! Lint() abort
     silent make!
 endfunction
 
-nnoremap gp m`:silent keepjump  %!prettier --stdin --trailing-comma all --single-quote --stdin-filepath %<CR>``
+nnoremap <buffer> gp m`:silent keepjump  %!prettier --stdin --trailing-comma all --single-quote --stdin-filepath %<CR>``
 
-nmap ]] /^[ \t]*\(export[ \t]\+\)\?\(default[ \t]\+\)\?\(async[ \t]\+\)\?function/-;/{<CR>
-nmap [[ ?[{}]?+;?^[ \t]*\(export[ \t]\+\)\=\(default[ \t]\+\)\=\(async[ \t]\+\)\=function?-;/{<CR>
-nmap ][ /^}$<CR>
-nmap [] ?^}$<CR>
+nmap <buffer> ]] /^[ \t]*\(export[ \t]\+\)\?\(default[ \t]\+\)\?\(async[ \t]\+\)\?function/-;/{<CR>
+nmap <buffer> [[ ?[{}]?+;?^[ \t]*\(export[ \t]\+\)\=\(default[ \t]\+\)\=\(async[ \t]\+\)\=function?-;/{<CR>
+nmap <buffer> ][ /^}$<CR>
+nmap <buffer> [] ?^}$<CR>
+nnoremap <buffer> <leader>w :se wildignore+=**/node_modules/**<CR>
+nnoremap <buffer> <leader>W :se wildignore=<CR>
+
 autocmd QuickFixCmdPost [^l]* cwindow
 setlocal formatprg=./node_modules/.bin/prettier\ --stdin\ --stdin-filepath\ %\ --config\ node_modules/gts/prettier.config.js
-nnoremap <leader>w :se wildignore+=**/node_modules/**<CR>
-nnoremap <leader>W :se wildignore=<CR>
-
