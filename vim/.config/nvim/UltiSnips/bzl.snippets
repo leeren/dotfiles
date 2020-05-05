@@ -1,0 +1,13 @@
+snippet proto "Proto Library Rule" b
+proto_library(
+    name = "$1",
+    srcs = ["$2"],
+)
+endsnippet
+
+snippet goproto "Go Proto Library Rule" b
+go_proto_library(
+    name = "$1"
+    deps = ["$2"]
+)
+endsnippet

@@ -1,9 +1,14 @@
 " invoke buildifier for formatting
 :command! -buffer -range=% Gofmt let b:winview = winsaveview() |
-  \ execute <line1> . "," . <line2> . "!gofmt " | 
+  \ silent! execute <line1> . "," . <line2> . "!gofmt " | 
   \ call winrestview(b:winview)
 
-augroup Gofmt
+:command! -buffer -range=% Goimport let b:winview = winsaveview() |
+  \ silent! execute <line1> . "," . <line2> . "!goimports " | 
+  \ call winrestview(b:winview)
+
+augroup Goupdate
   autocmd!
   autocmd BufWritePre <buffer> Gofmt
+  autocmd BufWritePre <buffer> Goimport
 augroup END

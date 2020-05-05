@@ -342,7 +342,7 @@ snippet img "<img>" i
 endsnippet
 
 snippet in "Input with Label" w
-<input type="$1`!p snip.rv=complete(t[1], INPUT_TYPES)`" $3 name="${2:some_name}"`!p snip.rv=' value="' if t[4] else ""`$4`!p snip.rv = '"' if t[4] else ""`>
+<input type="$1`!p snip.rv=complete(t[1], INPUT_TYPES)`"$2>
 endsnippet
 
 snippet input "HTML <input>" w

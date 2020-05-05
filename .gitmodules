@@ -16,3 +16,6 @@
 [submodule "submodules/vim-repeat"]
 	path = submodules/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "submodules/vim-abolish"]
+	path = submodules/vim-abolish
+	url = https://github.com/tpope/vim-abolish

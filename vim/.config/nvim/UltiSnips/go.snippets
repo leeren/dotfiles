@@ -2,6 +2,20 @@
 
 priority -10
 
+snippet todo "TODO reminder scoped for you" b
+// TODO(`echo $USER`): ${1:desc}
+endsnippet
+
+snippet packagecom "package comment"
+/*
+Package $1
+*/
+endsnippet
+
+snippet com "comment"
+// $1
+endsnippet
+
 snippet flags "flags"
 var (
 	$1 = flag.${2:String}("$3", "$4", "$5")
@@ -190,6 +204,14 @@ if err != nil {
 ${0}
 endsnippet
 
+snippet lexitf "Exit log with formatting" b
+log.Exitf("$1")
+endsnippet
+
+snippet lexit "Exit log" b
+log.Exit("$1")
+endsnippet
+
 # error log snippet
 snippet errl "Error with log.Fatal(err)" !b
 if err != nil {
@@ -274,6 +296,10 @@ for ${1:i} := 0; $1 < ${2:N}; $1++ {
 }
 endsnippet
 
+snippet ef "errorf" b
+log.Errorf("$1", $2)
+endsnippet
+
 # for range loop
 snippet forr "for k, v := range items { ... }"
 for ${2:k}, ${3:v} := range ${1} {
@@ -303,7 +329,7 @@ func ${1:name}(${2:params})${3/(.+)/ /}`!p opening_par(snip, 3)`$3`!p closing_pa
 endsnippet
 
 # Fmt Printf debug
-snippet ff "fmt.Printf(...)"
+snippet pf "fmt.Printf(...)"
 fmt.Printf("$1 = %+v\n", ${1:${VISUAL}})
 endsnippet
 
@@ -313,13 +339,23 @@ fmt.Printf("$1 = %#v\n", ${1:${VISUAL}})
 endsnippet
 
 # Fmt Println debug
-snippet fn "fmt.Println(...)"
+snippet pl "fmt.Println(...)"
 fmt.Println("${1:${VISUAL}}")
 endsnippet
 
 # Fmt Errorf debug
 snippet fe "fmt.Errorf(...)"
 fmt.Errorf("${1:${VISUAL}}")
+endsnippet
+
+# log infof
+snippet li "log.Infof(...)" b
+log.Infof("${1:${VISAUL}} = %+v\n", $1)
+endsnippet
+
+# log warningf
+snippet lw "log.Warningf(...)" b
+log.Warningf("${1:${VISUAL}} = %+v\n", $1)
 endsnippet
 
 # log printf

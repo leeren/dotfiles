@@ -7,6 +7,7 @@ syntax on                         " Turn on syntax highlighting
 
 " Variable Assignments {{{
 let $MYVIMRC="~/.vimrc"
+let $MYVIMDIR="~/.vim"
 " }}}
 
 " Settings {{{
@@ -53,6 +54,8 @@ cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 " Often utilize vertical splits
 cnoreabbrev v vert
+" Quit out of ex-mode faster
+cnoreabbrev vv visual
 " Fast global commands
 nnoremap ,g :g//#<Left><Left>
 " Faster project-based editing
@@ -72,6 +75,12 @@ nnoremap ,v :vert sfind *
 nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 
+" Argslist navigation
+nnoremap [a :previous<CR>
+nnoremap ]a :next<CR>
+nnoremap [A :first<CR>
+nnoremap ]A :last<CR>
+
 " More manageable brace expansions
 inoremap (; (<CR>);<C-c>O
 inoremap (, (<CR>),<C-c>O
@@ -82,7 +91,8 @@ inoremap [, [<CR>],<C-c>O
 
 " Useful for accessing commonly-used files
 nnoremap <leader>v :e $MYVIMRC<CR>
-nnoremap <leader>f :e <C-R>='~/.vim/ftplugin/'.&filetype.'.vim'<CR><CR>
+nnoremap <leader>f :e <C-R>='$MYVIMDIR/ftplugin/'.&filetype.'.vim'<CR><CR>
+nnoremap <leader>i :e <C-R>='$MYVIMDIR/indent/'.&filetype.'.vim'<CR><CR>
 nnoremap <leader>z :e ~/.zshrc<CR>
 nnoremap <leader>s :UltiSnipsEdit<CR>
 
@@ -92,10 +102,8 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 5/6)<CR>
 
 " Access file name data
 cnoremap \fp <C-R>=expand("%:p:h")<CR>
-tnoremap \fp <C-R>=expand("%:p:h")<CR>
 inoremap \fp <C-R>=expand("%:p:h")<CR>
 cnoremap \fn <C-R>=expand("%:t:r")<CR>
-tnoremap \fn <C-R>=expand("%:t:r")<CR>
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 " Symbol-based navigation
@@ -122,17 +130,12 @@ cnoremap <expr> <CR> cmdline#AutoComplete()
 " }}}
 
 " {{{ Autocommands
-" Automatically source .vimrc on save
-augroup Vimrc
-  autocmd!
-  autocmd! bufwritepost .vimrc source %
-augroup END
 
 " Automatically call OSC52 function on yank to sync register with host clipboard
-augroup Yank
-  autocmd!
-  autocmd TextYankPost * if v:event.operator ==# 'y' | call yank#Osc52Yank() | endif
-augroup END
+" augroup Yank
+" autocmd!
+" autocmd TextYankPost * if v:event.operator ==# 'y' | call yank#Osc52Yank() | endif
+" augroup END
 
 " Create file-marks for commonly edited file types
 augroup FileMarks
@@ -142,6 +145,7 @@ augroup FileMarks
   autocmd BufLeave *.js   normal! mJ
   autocmd BufLeave *.ts   normal! mT
   autocmd BufLeave *.vim  normal! mV
+	autocmd BufLeave *.bzl  normal! mB
 augroup END
 " }}}
 
@@ -180,6 +184,11 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Use carriage returns as a surround character
 let g:surround_13 = "\n\t\r\n"
+
+" Sometimes UltiSnips does not auto reload snippets
+cnoreabbrev resnip call UltiSnips#RefreshSnippets() 
 " }}}
 
