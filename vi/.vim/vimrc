@@ -1,0 +1,44 @@
+" VIMRC
+
+source $VIMRUNTIME/defaults.vim
+
+" Environment Variables {{{
+let $RTP=split(&runtimepath, ',')[0]
+" }}}
+
+" Settings {{{
+set foldmethod=marker
+set noswapfile
+set shell=/bin/bash
+set path=.,**
+" }}}
+
+" Mappings {{{
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
+" Faster file / directory navigation
+nnoremap ,e :e %:p:h/*
+
+" Commonly-used files
+nnoremap <leader>v :e $MYVIMRC<CR>
+nnoremap <leader>p :e $HOME/profile.d<CR>
+nnoremap <leader>b :e $HOME/.bashrc<CR>
+nnoremap <leader>z :e $HOME/.zshrc<CR>
+nnoremap <leader>s :UltiSnipsEdit<CR>
+cnoremap \fp <C-R>=expand("%:p:h")<CR>
+
+" Terminal-mode mappings
+tnoremap jj <C-\><C-n>
+" }}}
+
+" Abbreviations {{{
+cnoreabbrev snip UltiSnipsEdit
+" }}}
+
+" Ultisnips {{{
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" }}}

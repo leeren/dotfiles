@@ -1,0 +1,184 @@
+# variable
+snippet var "variable"
+variable "${1:name}" {
+  description = "$2"
+}
+endsnippet
+
+snippet var_em "variable with empty brackets"
+variable "${1:name}" {}
+endsnippet
+
+# providers
+snippet provider
+provider "${1:name}" {
+  ${2:config}
+}
+endsnippet
+
+snippet provider_aws
+provider "aws" {
+  access_key = "${var.access_key}"
+  secret_key = "${var.secret_key}"
+  region = "${var.region}"
+}
+endsnippet
+
+snippet provider_openstack
+provider "openstack" {
+  user_name  = "${var.user_name}"
+  tenant_name = "${var.tenant_name}"
+  password  = "${var.password}"
+  auth_url  = "${var.auth_url}"
+}
+endsnippet
+
+snippet provider_docker
+provider "docker" {
+  host = "${1:${var.host}}"
+}
+endsnippet
+
+snippet provider_google
+provider "google" {
+  account_file = "${file("account.json")}"
+  project = "my-gce-project"
+  region = "us-central1"
+}
+endsnippet
+
+snippet provider_digitalocean
+provider "digitalocean" {
+  token = "${var.do_token}"
+}
+endsnippet
+
+snippet provider_consul
+provider "consul" {
+  address = "demo.consul.io:80"
+k datacenter = "nyc1"
+}
+endsnippet
+
+# resource
+snippet res
+resource "${1:type}" "${2:name}" {
+  ${3:config}
+}
+endsnippet
+
+## resource aws
+snippet resource_aws_instance
+resource "aws_instance" "${1:name}" {
+  ami = "${2:ami-383c1956}"
+  instance_type = "${3:t2.micro}"
+}
+endsnippet
+
+snippet resource_route53_record "Resource for a route53 record"
+resource "aws_route53_record" "$2" {
+  zone_id = "$3"
+  name = "$4"
+  type = "$5"
+  ttl = "${6:300}"
+  records = $7
+}
+endsnippet
+
+snippet resource_template_file "Template file resource"
+resource "template_file" "$1" {
+  filename = "$1"
+  vars {
+    $2
+  }
+}
+endsnippet
+
+snippet resource_aws_eip
+resource "aws_eip" "${1:name}" {
+  instance = "aws_instance.${2:$1}.id"
+  vpc = ${3:true}
+}
+endsnippet
+
+snippet resource_aws_key_pair
+resource "aws_key_pair" "${1:name}" {
+  key_name = "${2:$1}"
+  public_key = "${3:public_key}"
+}
+endsnippet
+
+snippet resource_aws_security_group
+resource "aws_security_group" "${1:name}" {
+  name = "${2:$1}"
+  description = "${3:desc}"
+
+  ingress {
+      from_port = ${4:from_port}
+      to_port = ${5:to_port}
+      protocol = "${5:tcp}"
+      cidr_blocks = ["${6:0.0.0.0/0}"]
+  }
+
+  egress {
+      from_port = ${7:0}
+      to_port = ${8:0}
+      protocol = "${9:-1}"
+      cidr_blocks = [${10:"0.0.0.0/0"}]
+  }
+}
+endsnippet
+
+snippet resource_aws_s3_bucket
+resource "aws_s3_bucket" "${1:name}" {
+  bucket = "${2:$1}"
+  acl = "${3:private}"
+}
+endsnippet
+
+snippet resource_aws_s3_bucket_static_web
+resource "aws_s3_bucket" "${1:name}" {
+  bucket = "${2:$1}"
+  acl = "${3:private}"
+  policy = "${4:${file("policy.json")}}"
+
+  website {
+      index_document = "${5:index.html}"
+      error_document = "${6:error.html}"
+  }
+}
+endsnippet
+
+## other
+
+snippet output
+output "${1:name}" {
+  value = "${2:${aws_instance.foo.public_ip}}"
+}
+endsnippet
+
+snippet tags
+tags {
+  Name = "${2:value}"
+}
+endsnippet
+
+
+## funcs
+snippet lookup "Lookup function" w
+\$\{lookup(var.$1, $2)\}
+endsnippet
+
+
+#types
+snippet qvar "quoted variable"
+"\$\{var.$1\}"
+endsnippet
+
+snippet arr "make a array"
+[ $1 ]
+endsnippet
+
+snippet =
+$1 = $2
+endsnippet

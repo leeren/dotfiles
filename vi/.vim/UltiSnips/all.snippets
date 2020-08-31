@@ -1,0 +1,6 @@
+# TODO: Enable folds for more complicated / nonexistent commentstrings.
+snippet fold "Fold marker" b
+`!v &commentstring[0]` ${1:Description} `!v split(&foldmarker, ',')[0]`
+${2:${VISUAL}}
+`!v &commentstring[0]` `!v split(&foldmarker, ',')[1]`
+endsnippet

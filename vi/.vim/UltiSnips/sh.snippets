@@ -1,0 +1,34 @@
+snippet if "If statement" b
+if $1; then
+	$2
+fi
+endsnippet
+
+snippet test "New test" i
+[[ $1 ]]
+endsnippet
+
+snippet case "Case statement" b
+case $1 in
+	$2) $3 ;;
+	*) $4
+esac
+endsnippet
+
+snippet clause "Case statement clause" b
+$1) $2 ;;
+endsnippet
+
+snippet fdoc "Function document" b
+################################################################################
+# ${1:Description}
+# @param $2
+# @print $3
+################################################################################
+endsnippet
+
+snippet func "Function" b
+function $1 {
+	$2
+}
+endsnippet
