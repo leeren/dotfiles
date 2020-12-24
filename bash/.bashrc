@@ -2,26 +2,6 @@
 #
 # Main entry point to sourcing all configuration files.
 
-# If shell options indicate use of non-interactive mode, do nothing.
-if [[ ! $- =~ 'i' ]]; then
-	return
-fi
-
-# Source $HOME/.profile
-if [[ -f "$HOME/.profile" ]]; then
-  . "$HOME/.profile"
-fi
-
-# Source $HOME/.bash_profile
-if [[ -f "$HOME/.bash_profile" ]]; then
-  . "$HOME/.bash_profile"
-fi
-
-# Source all the bash aliases.
-if [[ -f "$HOME/.bash_aliases" ]]; then
-  . "$HOME/.bash_aliases"
-fi
-
 # Define all installation and configuration environment variables.
 export CONFIG_DIR="${HOME}/profile.d/config"
 export INSTALL_DIR="${HOME}/profile.d/install"
