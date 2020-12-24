@@ -6,4 +6,4 @@ sudo apt install stow
 stow vim bash ctags
 ```
 
-For submodules, perform symlinks relative to where the submodule should be placed (i.e. in `vim/.vim/pack/plugins/start` run `ln -s ../../../submodules/submodule`). To update submodules, run `git submodule update --remote`.
+For submodules, perform symlinks relative to where the submodule should be placed (i.e. in `vim/.vim/pack/plugins/start` run `ln -s ../../../../../submodules/submodule`). To update submodules, run `git submodule update --remote`.
