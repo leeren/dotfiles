@@ -1,1 +1,0 @@
-../../../submodules/vim-polyglot/syntax/typescript.vim

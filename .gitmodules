@@ -1,9 +1,3 @@
-[submodule "submodules/typescript-ctags"]
-	path = submodules/typescript-ctags
-	url = https://github.com/jb55/typescript-ctags.git
-[submodule "submodules/vim-polyglot"]
-	path = submodules/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "submodules/ultisnips"]
 	path = submodules/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
@@ -13,9 +7,6 @@
 [submodule "submodules/vim-commentary"]
 	path = submodules/vim-commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule "submodules/vim-repeat"]
-	path = submodules/vim-repeat
-	url = https://github.com/tpope/vim-repeat.git
-[submodule "submodules/vim-abolish"]
-	path = submodules/vim-abolish
-	url = https://github.com/tpope/vim-abolish
+[submodule "submodules/vim-snippets"]
+	path = submodules/vim-snippets
+	url = https://github.com/honza/vim-snippets
