@@ -1,0 +1,148 @@
+############
+#  COMMON  #
+############
+
+global !p
+
+class Arg(object):
+	def __init__(self, arg):
+		self.arg = arg
+		arg_pair = arg.split(' ')
+		self.name = arg_pair[-1].strip() if len(arg_pair) >= 2 else ""
+		self.type = arg_pair[0].strip() if len(arg_pair) >= 2 else None
+
+	def __str__(self):
+		return self.name
+
+	def __unicode__(self):
+		return self.name
+
+def format_arg(arg, key):
+	if arg.name == "":
+		return "/// {0} ".format(key)
+	return "/// {0} {1} ".format(key, arg)
+
+def get_args(arglist):
+	args = [Arg(arg) for arg in arglist.split(', ') if arg]
+	return args
+
+def write_docstring_args(args, snip, tag):
+	if not args:
+		return
+	for arg in args:
+		snip += format_arg(arg, tag)
+
+def write_function_docstring(t, snip):
+	"""
+	Writes a function docstring (following NatSpec).
+
+	:param t: The values of the placeholders
+	:param snip: UltiSnips.TextObjects.SnippetUtil object instance
+	"""
+	snip.rv = ""
+	
+	args = get_args(t[2])
+	if args:
+		write_docstring_args(args, snip, '@param')
+
+def write_return_docstring(t, snip):
+	"""
+	Writes a return docstring (following NatSpec).
+
+	:param t: The values of the placeholders
+	:param snip: UltiSnips.TextObjects.SnippetUtil object instance
+	"""
+	snip.rv = ""
+	
+	args = get_args(t[5])
+	if args:
+		write_docstring_args(args, snip, '@return')
+
+endglobal 
+
+snippet adrp "" b
+address public $1
+endsnippet
+
+snippet map "mapping" b
+mapping ($1 => $2) $3;
+endsnippet
+
+snippet gpl "gpl license" b
+// SPDX-License-Identifier: GPL-3.0
+endsnippet
+
+snippet pragma "pragma identifier" b
+pragma solidity ^0.7.${1:0};
+endsnippet
+
+snippet funn "function without docstring" b
+function ${1:funcName}(${2:int arg1}) ${3:public}`!p
+snip.rv = " " if len(t[5]) else ""`${4:returns (${5:retType})} {${6:
+	${7:${VISUAL:YOUR CODE HERE}}
+}}
+endsnippet
+
+snippet fun "function with docstring" b
+/// ${6:${7:@notice ${8:Explain to an end user what this does}}${9:
+/// @dev ${10:Explain to a developer any extra details}}${11:`!p
+write_function_docstring(t, snip)`}${12:`!p 
+write_return_docstring(t,snip)`}}
+function ${1:funcName}(${2:int arg1}) ${3:public}`!p
+snip.rv = " " if len(t[5]) else ""`${4:returns (${5:retType})} {${13:
+	${14:${VISUAL:YOUR CODE HERE}}
+}}
+endsnippet
+
+snippet ev "event with docstring" b
+${3:${4:/// @notice ${5:Explain to an end user what this does
+}}${6:/// @dev ${7:Explain to a developer any extra details
+}}${8:`!p write_function_docstring(t, snip)`}}
+event ${1:funcName}(${2:int arg1});
+endsnippet
+
+snippet interface "interface with docstring" b
+/// ${2:${3:@title ${4:A title that should describe the contract}}${5:
+/// @author ${6:Leeren Chang}}${7:
+/// @notice ${8:Explain to an end user what this does}}${9:
+/// @dev ${10:Explain to a developer any extra details}}}
+interface ${1:interfaceName} {
+	${12:${VISUAL:YOUR CODE HERE}}
+}
+endsnippet
+
+snippet interfacee "interface without docstring" b
+interface ${1:interfaceName} {
+	${2:${VISUAL:YOUR CODE HERE}}
+}
+endsnippet
+
+snippet conn "contract without docstring" b
+${2:abstract }contract ${1:contractName} {
+	${3:${VISUAL:YOUR CODE HERE}}
+}
+endsnippet
+
+snippet con "contract with docstring" b
+/// ${3:${4:@title ${5:A title that should describe the contract}}${6:
+/// @author ${7:Leeren Chang}}${8:
+/// @notice ${9:Explain to an end user what this does}}${10:
+/// @dev ${11:Explain to a developer any extra details}}}
+${2:abstract }contract ${1:contractName} {
+	${12:${VISUAL:YOUR CODE HERE}}
+}
+endsnippet
+
+snippet req "require()" b
+require(${1:x <= 100000});
+endsnippet
+
+snippet mst "message.sender.transfer" b
+msg.sender.transfer($1)
+endsnippet
+
+snippet fb "fallback" b
+fallback () external${1: payable} {${2:
+	${3:${VISUAL:YOUR CODE HERE}}
+}}
+endsnippet

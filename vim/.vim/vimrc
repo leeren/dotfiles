@@ -13,6 +13,7 @@ syntax on                         " Turn on syntax highlighting
 
 " Settings {{{
 set backspace=indent,eol,start    " Backspace everything in insert mode
+set formatoptions=tcroql          " Auto-wrap comments
 set wildmenu                      " Display matches in command-line mode
 set expandtab                     " Prefer spaces over tabs in general
 set hidden                        " Prefer hiding over unloading buffers
@@ -76,8 +77,8 @@ nnoremap [A :first<CR>
 nnoremap ]A :last<CR>
 
 " Useful for accessing commonly-used files
-nnoremap <leader>b $HOME/.bashrc<CR>
-nnoremap <leader>v $HOME/.zshrc<CR>
+nnoremap <leader>b :e $HOME/.bashrc<CR>
+nnoremap <leader>r :e $RTP<CR>
 nnoremap <leader>v :e $VIMRC<CR>
 nnoremap <leader>f :e <C-R>='$RTP/after/ftplugin/'.&filetype.'.vim'<CR><CR>
 nnoremap <leader>s :UltiSnipsEdit<CR>
@@ -117,6 +118,7 @@ augroup FileMarks
   autocmd BufLeave *.js   normal! mJ
   autocmd BufLeave *.ts   normal! mT
   autocmd BufLeave *.vim  normal! mV
+	autocmd BufLeave *.sol  normal! mO
   autocmd BufLeave *.bzl  normal! mB
 augroup END
 " }}}
@@ -165,4 +167,5 @@ let g:surround_13 = "\n\t\r\n"
 
 " Sometimes UltiSnips does not auto reload snippets
 cnoreabbrev resnip call UltiSnips#RefreshSnippets() 
+nnoremap <leader>u :UltiSnipsEdit!<CR>
 " }}}

@@ -1,0 +1,135 @@
+priority 1
+
+snippet a "link" w
+<a href="${1:https://www.${2:url.com}}"${3: target="_blank"}>${4:anchor text}</a>
+endsnippet
+
+snippet abbrev "abbreviation" w
+<abbr title=$1">$2</abbr>
+endsnippet
+
+snippet apos "apostrophe" w
+&apos;
+endsnippet
+
+snippet amp "ampersand" w
+&amp;
+endsnippet
+
+snippet br "<br>" w
+<br>$1
+endsnippet
+
+snippet em "<em>" w
+<em>${0:${VISUAL}}</em>
+endsnippet
+
+snippet emdash "em dash" w
+&mdash;
+endsnippet
+
+snippet endash "en dash" w
+&ndash;
+endsnippet
+
+snippet colgroup "col group" w
+<colgroup${1: span="$2"}>$3</colgroup>
+endsnippet
+
+snippet com "comment" w
+<!--$1-->
+endsnippet
+
+snippet gt "greater-than symbol" w
+&gt;
+endsnippet
+
+snippet img "<img>" w
+<img src="$1" alt="$2">
+endsnippet
+
+snippet lt "less-than symbol" w
+&lt;
+endsnippet
+
+snippet meta "HTML <meta>" w
+<meta charset="utf-8">
+endsnippet
+
+snippet h1 "HTML <h1>" w
+<h1${3: id="${4}"}${1: class="${2}"}>${0:${VISUAL}}</h1>
+endsnippet
+
+snippet h2 "HTML <h2>" w
+<h2${3: id="${4}"}${1: class="${2}"}>${0:${VISUAL}}</h2>
+endsnippet
+
+snippet h3 "HTML <h3>" w
+<h3${3: id="${4}"}${1: class="${2}"}>${0:${VISUAL}}</h3>
+endsnippet
+
+snippet h4 "HTML <h4>" w
+<h4${3: id="${4}"}${1: class="${2}"}>${0:${VISUAL}}</h4>
+endsnippet
+
+snippet h5 "HTML <h5>" w
+<h5${3: id="${4}"}${1: class="${2}"}>${0:${VISUAL}}</h5>
+endsnippet
+
+snippet h6 "HTML <h6>" w
+<h6${3: id="${4}"}${1: class="${2}"}>${0:${VISUAL}}</h6>
+endsnippet
+
+snippet imgsrc "img src" b
+<img src="$1" alt="$2"
+	srcset="$3 $4w$5"${6:
+	sizes="($7: $8) $9vw$10"}>
+endsnippet
+
+snippet ol "<ol>"
+<ol${1: start="$2"}>
+	<li>$100
+</ol>
+endsnippet
+
+snippet p "paragraph" w
+<p>${0:${VISUAL}}
+endsnippet
+
+snippet quot "quotation mark" w
+&quot;
+endsnippet
+
+snippet source "source" w
+<source type="image/$1" media="($2)" srcset="$3" ${4:sizes="$5"}>
+endsnippet
+
+snippet span "span"	 w
+<span${3: id="${4}"}${1: class="${2}"}>${0:${VISUAL}}</span>
+endsnippet
+
+snippet table "table" b
+<table>${1:
+	<caption>$2</caption>}${3:
+	colgroup$4}${5:
+	thead$6}${7:
+	tbody$8}${9:
+	tfoot$10}
+</table>
+endsnippet
+
+snippet th "table header" w
+<th scope="$1">${0:${VISUAL}}</th>
+endsnippet
+
+snippet thead "thead" b
+<thead>
+	<tr>$1</tr>
+</thead>
+endsnippet
+
+snippet tbody "tbody" b
+<tbody>
+	<tr>$1</tr>
+</tbody>
+endsnippet
