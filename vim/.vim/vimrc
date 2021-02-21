@@ -76,6 +76,10 @@ nnoremap ]a :next<CR>
 nnoremap [A :first<CR>
 nnoremap ]A :last<CR>
 
+" Quickfix list navigation
+nnoremap [q :cp<CR>
+nnoremap ]q :cn<CR>
+
 " Useful for accessing commonly-used files
 nnoremap <leader>b :e $HOME/.bashrc<CR>
 nnoremap <leader>r :e $RTP<CR>
@@ -105,6 +109,9 @@ cnoremap <expr> <CR> cmdline#AutoComplete()
 
 " Scratch Buffer
 command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+
+" Make
+nnoremap <space> :silent make <bar> redraw!<CR>
 " }}}
 
 " {{{ Autocommands

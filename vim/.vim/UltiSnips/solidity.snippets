@@ -65,7 +65,7 @@ address public $1
 endsnippet
 
 snippet map "mapping" b
-mapping ($1 => $2) $3;
+mapping($1 => $2) $3;
 endsnippet
 
 snippet gpl "gpl license" b
@@ -89,7 +89,7 @@ snippet fun "function with docstring" b
 write_function_docstring(t, snip)`}${12:`!p 
 write_return_docstring(t,snip)`}}
 function ${1:funcName}(${2:int arg1}) ${3:public}`!p
-snip.rv = " " if len(t[5]) else ""`${4:returns (${5:retType})} {${13:
+snip.rv = " " if len(t[5]) else ""`${4:returns (${5:retType}) } {${13:
 	${14:${VISUAL:YOUR CODE HERE}}
 }}
 endsnippet
@@ -134,7 +134,7 @@ ${2:abstract }contract ${1:contractName} {
 endsnippet
 
 snippet req "require()" b
-require(${1:x <= 100000});
+require(${1:x <= 100000}, "$2");
 endsnippet
 
 snippet mst "message.sender.transfer" b
@@ -145,4 +145,26 @@ snippet fb "fallback" b
 fallback () external${1: payable} {${2:
 	${3:${VISUAL:YOUR CODE HERE}}
 }}
+endsnippet
+
+snippet str "string" b
+string ${1:public }${2:name}${3: = "$4"};
+endsnippet
+
+snippet int "uint256" b
+uint256 ${1:public } ${2:name}${3: = $4};
+endsnippet
+
+snippet addr "address" b
+address ${1:public } ${2:name}${3: = $4};
+endsnippet
+
+snippet init "constructor" b
+constructor() ${1:public }{
+	$2
+}
+endsnippet
+
+snippet a "array" w
+$1[$2]$3;
 endsnippet

@@ -1,0 +1,32 @@
+# https://github.com/honza/vim-snippets/blob/master/snippets/javascript-mocha.snippets
+snippet des "describe" b
+describe('${1:}', () => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet it "it" b
+it('${1:}', async () => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet bef "before" b
+before((async ) => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet befe "beforeEach" b
+beforeEach(async () => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet exp "expect" b
+expect(${1:})${0};
+endsnippet
+
+snippet expe "expect(...).to.equal(...)" b
+expect(${1:}).to.equal(${0});
+endsnippet

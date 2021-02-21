@@ -10,3 +10,6 @@
 [submodule "submodules/vim-snippets"]
 	path = submodules/vim-snippets
 	url = https://github.com/honza/vim-snippets
+[submodule "submodules/delimitMate"]
+	path = submodules/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git

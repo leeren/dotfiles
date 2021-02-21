@@ -1,6 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
-let g:netrw_dirhist_4='/Users/leeren/test'
-let g:netrw_dirhist_3='/Users/leeren'
-let g:netrw_dirhist_2='/Users/leeren/test'
-let g:netrw_dirhist_1='/Users/leeren/.vim'
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/leeren/bit-louie'
+let g:netrw_dirhist_4='/Users/leeren/bit-louie/contracts'
+let g:netrw_dirhist_3='/Users/leeren/bit-louie/test'
+let g:netrw_dirhist_2='/Users/leeren/hop-louie/contracts'
+let g:netrw_dirhist_1='/Users/leeren/hop-louie'
+let g:netrw_dirhist_0='/Users/leeren/HopLouie'
+let g:netrw_dirhist_9='/Users/leeren/Documents/LWD5e_materials 2/ch07/Exercise 07-02'
+let g:netrw_dirhist_8='/Users/leeren/Documents/LWD5e_materials 2/ch07/Exercise 07-01'
+let g:netrw_dirhist_7='/Users/leeren/Documents/LWD5e_materials 2/ch07'
+let g:netrw_dirhist_6='/Users/leeren/Documents/LWD5e_materials 2/ch04'

@@ -1,0 +1,15 @@
+extends typescript-mocha
+extends typescript-hardhat
+
+snippet imp "Single export import" b
+import { $1 } from "$2";
+endsnippet
+
+snippet eimp "Entire module import" b
+import * as $1 from "$2";
+endsnippet
+
+snippet simp "Import for side-effects" b
+import '$1';
+endsnippet
+

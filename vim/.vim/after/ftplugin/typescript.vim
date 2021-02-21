@@ -3,7 +3,6 @@
 set wildignore=**/node_modules/**,**/dist/**
 
 let &l:errorformat = '%-G,%EERROR: %f:%l:%c - %m,%WWARNING: %f:%l:%c - %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): %m,%Eerror %m'
-let &l:makeprg = 'tsmake'
 
 setlocal keywordprg=/usr/local/google/home/leeren/devdocs.sh
 
@@ -218,15 +217,6 @@ function! TypeScriptIncludeExpression(fname) abort
 
     " give up
     return 0
-endfunction
-
-augroup Linting
-    autocmd!
-    autocmd BufWritePost *.ts call Lint()
-augroup END
-
-function! Lint() abort
-    silent make!
 endfunction
 
 nnoremap <buffer> gp m`:silent keepjump  %!prettier --stdin --trailing-comma all --single-quote --stdin-filepath %<CR>``
