@@ -22,15 +22,15 @@ set path=.,**                     " Relative to current file and everything unde
 setl wildignore=**/node_modules/**,**/dist/**,*.pyc
 set noswapfile                    " Disables swapfiles
 set tags=./tags;,tags;            " Find tags relative to current file and directory
-set t_BE=                         " Disable bracketed paste mode
 " }}}
 
 " Mappings {{{
 " Self-explanatory convenience mappings
 inoremap jj <Esc>
-noremap <C-k> <C-p>
-noremap <C-p> <Up>$
+nnoremap <C-k> <C-p>
+nnoremap <C-p> <Up>$
 inoremap <C-j> <CR><C-o>O<C-t>
+inoremap <C-d> <Del>
 vnoremap ; :
 vnoremap : ;
 nnoremap ; :
@@ -51,6 +51,8 @@ cnoremap <C-k> <Up>
 " Command-line hjkl-style reverse-search
 cnoremap <C-j> <Down>
 
+" Highlight pasted text
+nnoremap <expr> gp '`[' . getregtype()[0] . '`]'
 " Often utilize vertical splits
 cnoreabbrev v vert
 " Quit out of ex-mode faster
@@ -98,10 +100,10 @@ cnoremap \fn <C-R>=expand("%:t:r")<CR>
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 " Kill bad habits
-noremap h <nop>
-noremap j <nop>
-noremap k <nop>
-noremap l <nop>
+" noremap h <nop>
+" noremap j <nop>
+" noremap k <nop>
+" noremap l <nop>
 inoremap <esc> <nop>
 
 " Command-line completion (author: romainl)
@@ -133,7 +135,6 @@ augroup END
 " Neovim {{{
 if has("nvim")
   " Terminal mode:
-  tnoremap <Esc> <C-\><C-n>
   autocmd TermOpen * startinsert
 
   " Prefer h-j-k-l mode-agnostic means of switching windows

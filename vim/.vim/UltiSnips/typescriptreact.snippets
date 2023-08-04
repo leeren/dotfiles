@@ -1,0 +1,70 @@
+extends typescript
+
+snippet h1
+<h1>${0:${VISUAL}}</h1>
+endsnippet
+
+snippet h2
+<h2>${0:${VISUAL}}</h2>
+endsnippet
+
+snippet p
+<p>${0:${VISUAL}}</p>
+endsnippet
+
+snippet section
+<section>
+	${0:${VISUAL}}
+</section>
+endsnippet
+
+snippet section#
+<section id=$1>
+	${0:${VISUAL}}
+</section>
+endsnippet
+
+snippet section.
+<section className=$1>
+	${0:${VISUAL}}
+</section>
+endsnippet
+
+snippet li
+<li>$1</li>
+endsnippet
+
+
+snippet styled "styled" b
+const $1 = styled.$2\`
+	$3
+\`;
+endsnippet
+
+snippet us "use-state" b
+const [$1, $2] = useState($3);
+endsnippet
+
+snippet ue "use-effect" b
+useEffect(() => {
+	$1
+});
+endsnippet
+
+snippet t
+<$1>
+	${0:${VISUAL}}
+</$1>
+endsnippet
+
+snippet ul.
+<ul className=$1>
+	${0:${VISUAL}}
+</ul>
+endsnippet
+
+snippet ul#
+<ul id=$1>
+	${0:${VISUAL}}
+</ul>
+endsnippet

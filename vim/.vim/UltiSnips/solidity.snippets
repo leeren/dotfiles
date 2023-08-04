@@ -1,3 +1,5 @@
+extends solidity-hardhat
+
 ############
 #  COMMON  #
 ############
@@ -73,7 +75,23 @@ snippet gpl "gpl license" b
 endsnippet
 
 snippet pragma "pragma identifier" b
-pragma solidity ^0.7.${1:0};
+pragma solidity >=0.8.${0:11};
+endsnippet
+
+snippet modd "modifier without docstring" b
+modifier ${1:modifierName}(${2:int arg1}) {${3:
+	${4:${VISUAL:YOUR CODE HERE}}
+}}
+endsnippet
+
+snippet mod "modifier with docstring" b
+/// ${3:${4:@notice ${5:Explain to an end user what this does}}${6:
+/// @dev ${6:Explain to a developer any extra details}}${7:`!p
+write_function_docstring(t, snip)`}${8:`!p 
+write_return_docstring(t,snip)`}}
+modifier ${1:modifierName}(${2:int arg1}) {${9:
+	${10:${VISUAL:YOUR CODE HERE}}
+}}
 endsnippet
 
 snippet funn "function without docstring" b
@@ -92,6 +110,13 @@ function ${1:funcName}(${2:int arg1}) ${3:public}`!p
 snip.rv = " " if len(t[5]) else ""`${4:returns (${5:retType}) } {${13:
 	${14:${VISUAL:YOUR CODE HERE}}
 }}
+endsnippet
+
+snippet fundoc "function docstring" b
+${2:/// @notice ${3:Explain to an end user what this does}}${4:
+/// @dev ${5:Explain to a developer any extra details}}${6:
+/// @param ${7:Parameters}}${8:
+/// @return ${9:ReturnValue}}
 endsnippet
 
 snippet ev "event with docstring" b
@@ -115,6 +140,10 @@ snippet interfacee "interface without docstring" b
 interface ${1:interfaceName} {
 	${2:${VISUAL:YOUR CODE HERE}}
 }
+endsnippet
+
+snippet imp "import" b
+import "$1";
 endsnippet
 
 snippet conn "contract without docstring" b
@@ -152,7 +181,7 @@ string ${1:public }${2:name}${3: = "$4"};
 endsnippet
 
 snippet int "uint256" b
-uint256 ${1:public } ${2:name}${3: = $4};
+uint256 ${1:public }${2:name}${3: = $4};
 endsnippet
 
 snippet addr "address" b
@@ -160,11 +189,39 @@ address ${1:public } ${2:name}${3: = $4};
 endsnippet
 
 snippet init "constructor" b
-constructor() ${1:public }{
-	$2
+constructor($2) ${1:public }{
+	$3
 }
 endsnippet
 
 snippet a "array" w
 $1[$2]$3;
+endsnippet
+
+snippet v "value" w
+$1 = $2;
+endsnippet
+
+snippet use "use" b
+using ${1:SafeMath} for $2
+endsnippet
+
+snippet in "inherit" b
+/// @inheritdoc $1
+endsnippet
+
+snippet not "notice" b
+/// @notice $1
+endsnippet
+
+snippet param "param" b
+/// @param $1
+endsnippet
+
+snippet ae "assert equals" b
+assertEq($1, $2);
+endsnippet
+
+snippet at "assert true" b
+assertTrue($1);
 endsnippet

@@ -1,5 +1,7 @@
 " TODO: Clean this file up - it's really messy and outdated
 " Ignore node_modules, distribution folder, and javascript files
+set shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab autoindent smartindent
+
 set wildignore=**/node_modules/**,**/dist/**
 
 let &l:errorformat = '%-G,%EERROR: %f:%l:%c - %m,%WWARNING: %f:%l:%c - %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): error %m,%E%f(%l\,%c): %m,%Eerror %m'
@@ -17,8 +19,6 @@ setlocal include=\\%(\\<require\\s*(\\s*\\\|\\<import\\>[^;\"']*\\)[\"']\\zs[^\"
 setlocal define=^\\s*\\(export\ \\)\\?\\<\\(type\\\|var\\\|interface\\\|const\\\|let\\\|\\(async\ \\)\\?function\\\|class\\)\\>
 
 setlocal isfname+=@-@
-
-setlocal sw=2
 
 setlocal commentstring=//\ %s
 
@@ -219,7 +219,7 @@ function! TypeScriptIncludeExpression(fname) abort
     return 0
 endfunction
 
-nnoremap <buffer> gp m`:silent keepjump  %!prettier --stdin --trailing-comma all --single-quote --stdin-filepath %<CR>``
+nnoremap <buffer> <leader>z m`:silent keepjump  %!prettier --stdin --trailing-comma all --single-quote --stdin-filepath %<CR>``
 
 nmap <buffer> ]] /^[ \t]*\(export[ \t]\+\)\?\(default[ \t]\+\)\?\(async[ \t]\+\)\?function/-;/{<CR>
 nmap <buffer> [[ ?[{}]?+;?^[ \t]*\(export[ \t]\+\)\=\(default[ \t]\+\)\=\(async[ \t]\+\)\=function?-;/{<CR>
@@ -230,3 +230,4 @@ nnoremap <buffer> <leader>W :se wildignore=<CR>
 
 autocmd QuickFixCmdPost [^l]* cwindow
 setlocal formatprg=./node_modules/.bin/prettier\ --stdin\ --stdin-filepath\ %\ --config\ node_modules/gts/prettier.config.js
+

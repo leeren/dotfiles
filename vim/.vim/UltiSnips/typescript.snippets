@@ -1,15 +1,59 @@
+extends javascript
 extends typescript-mocha
 extends typescript-hardhat
+extends typescript-react
+extends typescript-waffle
+
+snippet a "await" w
+await $1${2:;}
+endsnippet
+
+snippet async "Async function" b
+async function $1($2) {
+	$3
+}
+endsnippet
+
+snippet caf
+const ${1:function_name} = async (${2}) => {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet cf
+const ${1:function_name} = (${2}) => {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet cfnb
+const ${1:function_name} = ${2} => {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet log
+console.log("$1", $2);
+endsnippet
 
 snippet imp "Single export import" b
-import { $1 } from "$2";
+import { $1 } from '$2';
 endsnippet
 
 snippet eimp "Entire module import" b
-import * as $1 from "$2";
+import * as $1 from '$2';
 endsnippet
 
 snippet simp "Import for side-effects" b
 import '$1';
 endsnippet
 
+snippet dimp "Import default export" b
+import $1 from '$2';
+endsnippet
+
+snippet edf
+export default function ${1:function_name}(${2}) {
+	${0:${VISUAL}}
+}
+endsnippet

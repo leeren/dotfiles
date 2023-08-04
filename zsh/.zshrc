@@ -25,6 +25,7 @@ source $ZSH/oh-my-zsh.sh
 
 # General aliases
 alias vi='nvim -c "let g:tty='\''$(tty)'\''"'
+alias nvim='nvim -c "let g:tty='\''$(tty)'\''"'
 alias a='awk "{print \$1}"'
 alias z='awk "{print \$NF}"'
 function c () {
